@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.who-are-we {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #efe4da;
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 1200px;
+  margin: 80px auto;
+  font-family: 'Poppins', sans-serif;
+}
+
+.who-text {
+  flex: 1;
+  padding: 60px;
+  color: #111;
+}
+
+.who-text h3 {
+  font-size: 16px;
+  letter-spacing: 1px;
+  color: #555;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.who-text h1 {
+  font-size: 42px;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 25px;
+}
+
+.who-text p {
+  font-size: 16px;
+  color: #333;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  max-width: 500px;
+}
+
+.who-text .shop-btn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.who-text .shop-btn:hover {
+  background-color: #333;
+}
+
+.who-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+}
+
+.who-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .who-are-we {
+    flex-direction: column;
+  }
+
+  .who-text, .who-image {
+    width: 100%;
+    padding: 40px;
+  }
+
+  .who-text h1 {
+    font-size: 34px;
+  }
+}

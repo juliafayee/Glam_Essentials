@@ -1,0 +1,71 @@
+/* Admin Panel Elegant Styles */
+:root{
+  --gs-bg:#ffffff;
+  --gs-text:#111111;
+  --gs-muted:#6b7280;
+  --gs-line:#eeeeee;
+  --gs-card:#ffffff;
+  --gs-shadow:0 8px 24px rgba(0,0,0,.08);
+  --gs-primary:#111111;
+  --gs-accent:#FFB6C1; /* brand pink from site */
+  --gs-danger:#7a1530;
+}
+
+body{ font-family:'Montserrat',sans-serif; color:var(--gs-text); }
+
+.admin-page{ padding:32px 16px 80px; }
+.admin-container{ max-width:1100px; margin:0 auto; }
+
+.page-header{ margin-bottom:18px; }
+.page-title{ font-family:'Playfair Display',serif; font-weight:700; font-size:32px; letter-spacing:.2px; }
+.page-subtitle{ color:var(--gs-muted); margin-top:6px; }
+
+.grid-2{ display:grid; grid-template-columns: 1fr 1.4fr; gap:18px; align-items:start; }
+@media(max-width: 1000px){ .grid-2{ grid-template-columns: 1fr; } }
+
+.card{ background:var(--gs-card); border:1px solid var(--gs-line); border-radius:14px; box-shadow:var(--gs-shadow); padding:18px; }
+.section-title{ font-size:18px; font-weight:600; margin-bottom:14px; }
+
+.form-grid{ display:grid; grid-template-columns:1fr; gap:12px; }
+.form-group{ display:flex; flex-direction:column; gap:6px; }
+.form-label{ font-size:13px; font-weight:600; color:#333; }
+.form-input,.form-select{ border:1px solid #ddd; border-radius:10px; padding:10px 12px; font-size:14px; outline:none; transition:border-color .2s, box-shadow .2s; width:100%; }
+.form-input:focus,.form-select:focus{ border-color:#000; box-shadow:0 0 0 3px rgba(0,0,0,.06); }
+
+.btn{ background:var(--gs-primary); color:#fff; border:0; border-radius:10px; padding:10px 14px; font-weight:600; cursor:pointer; transition:transform .12s ease, box-shadow .2s ease; box-shadow:0 6px 14px rgba(0,0,0,.12); }
+.btn:hover{ transform:translateY(-1px); box-shadow:0 10px 18px rgba(0,0,0,.15); }
+.btn:active{ transform:translateY(0); box-shadow:0 6px 14px rgba(0,0,0,.12); }
+
+.btn-secondary{ background:#fff; color:#111; border:1px solid #ddd; border-radius:10px; padding:9px 14px; font-weight:600; cursor:pointer; }
+
+.btn-danger{ background:var(--gs-danger); color:#fff; border:0; border-radius:10px; padding:10px 14px; font-weight:600; cursor:pointer; box-shadow:0 6px 14px rgba(122,21,48,.25); }
+.btn-danger:hover{ filter:brightness(1.02); }
+
+.muted{ color:var(--gs-muted); font-size:13px; }
+
+.table-responsive{ width:100%; overflow:auto; border-radius:12px; border:1px solid var(--gs-line); }
+.table{ width:100%; border-collapse:separate; border-spacing:0; }
+.table thead th{ text-align:left; font-size:12px; text-transform:uppercase; letter-spacing:.6px; color:#444; background:#fafafa; padding:12px 14px; border-bottom:1px solid var(--gs-line); position:sticky; top:0; }
+.table tbody td{ padding:12px 14px; border-bottom:1px solid var(--gs-line); vertical-align:middle; }
+.table tbody tr:hover{ background:#fff9fb; }
+
+/* Make inline edit inputs compact inside rows */
+.table .form-input{ padding:8px 10px; font-size:14px; }
+.table td form{ display:inline-flex; align-items:center; gap:8px; }
+
+/* Alerts (leverages includes/alert.php minimal) */
+.alert{ margin:8px 0 14px; padding:12px 14px; border-radius:10px; border:1px solid #eee; }
+.alert.success{ background:#fff7fa; border-left:4px solid var(--gs-accent); }
+.alert.error{ background:#fff4f6; border-left:4px solid var(--gs-danger); }
+
+/* Subtle accents */
+.page-title::after{ content:''; display:block; width:56px; height:3px; background:var(--gs-accent); margin-top:8px; border-radius:999px; }
+
+/* Inputs inside table columns width control */
+.table td:nth-child(2) .form-input{ min-width:240px; }
+.table td:nth-child(3) .form-input{ min-width:180px; }
+
+/* Spacing for the actions column */
+.table td:last-child{ white-space:nowrap; }
+.table td:last-child .btn{ padding:8px 12px; }
+.table td:last-child .btn-danger{ padding:8px 12px; }

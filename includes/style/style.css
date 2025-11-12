@@ -1,0 +1,689 @@
+/* Reset + Base */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* Main layout setup for sticky footer */
+html {
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body { 
+  /* font-family: 'Helvetica Neue', Arial, sans-serif;  */
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: relative;
+  overflow-x: hidden;
+  padding-top: 100px; /* Adjust this value based on your header height */
+}
+
+main {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+  padding-bottom: 60px; /* Height of footer + some spacing */
+}
+
+/* 🌸 Top Banner */
+.top-banner {
+  background-color: #FFB6C1;
+  color: #000;
+  padding: 8px 0;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+.banner-content {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: scrollBanner 10s linear infinite;
+}
+
+/* Duplicate text to create seamless effect */
+.banner-content span {
+  padding: 0 50px;
+}
+
+/* Animation */
+@keyframes scrollBanner {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+/* 🖤 Header */
+.header-container {
+  background: #fff;
+  position: fixed;
+  top: 29px; /* Height of banner (8px padding * 2 + ~13px text) */
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+  font-family: 'Montserrat', sans-serif; /* Explicit font to prevent inheritance issues */
+}
+
+/* Remove underline from all header links */
+.header-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.header-container a:hover {
+  text-decoration: none;
+}
+
+.header-main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 15px 30px !important; /* Ensure consistent padding across all pages */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Montserrat', sans-serif; /* Explicit font */
+}
+.header-actions { 
+  display: flex; 
+  align-items: center; 
+  gap: 14px;
+  height: 44px; /* Match logo height for alignment */
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  height: 44px; /* Match logo height for alignment */
+}
+.logo-img { 
+  height: 44px; 
+  transition: transform 0.25s ease;
+  display: block;
+}
+.logo:hover .logo-img { transform: scale(1.05); }
+
+/* Nav - Desktop Default */
+.nav-container { 
+  display: flex; 
+  align-items: center; 
+  flex: 1; 
+  justify-content: center; 
+  height: 44px; /* Match logo height for alignment */
+}
+.main-nav { 
+  list-style: none; 
+  display: flex; 
+  gap: 35px;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav li {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.3px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 0.3s ease;
+}
+.nav-link:hover::after { transform: translateX(-50%) scaleX(1); }
+/* .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background-color: #000;
+  transform: translateX(-50%) scaleX(0);
+  transition: transform 0.3s ease;
+} */
+/* .nav-link:hover::after { transform: translateX(-50%) scaleX(1); } */
+
+.main-nav .nav-link,
+.dropdown-menu a {
+  text-decoration: none;
+}
+
+.main-nav .nav-link:hover,
+.dropdown-menu a:hover {
+  text-decoration: none;
+}
+
+/* Dropdown - Desktop */
+.nav-item {
+  position: relative;
+}
+
+
+.nav-item.dropdown > .nav-link::before {
+  display: none; /* Dropdown arrow removed */
+}
+
+.nav-item.dropdown:hover > .nav-link::before {
+  display: none; /* Dropdown arrow removed */
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 200px;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  z-index: 20;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  transition-delay: 0s;
+}
+
+.nav-item:hover .dropdown-menu,
+.dropdown-menu:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+/* Ensure links inside dropdown are always clickable and hoverable when menu is visible */
+.nav-item:hover .dropdown-menu a,
+.dropdown-menu:hover a {
+  pointer-events: auto !important;
+  cursor: pointer;
+}
+
+/* Delay before closing - stays open longer when mouse leaves */
+.nav-item:not(:hover) .dropdown-menu:not(:hover) {
+  transition-delay: 0.5s;
+}
+
+/* Remove underline from dropdown links */
+.dropdown-menu a {
+  text-decoration: none;
+  color: #333333;
+  display: block;
+  padding: 12px 24px !important; /* Ensure consistent padding */
+  font-size: 14px !important; /* Ensure consistent font size */
+  font-weight: 400;
+  letter-spacing: 0;
+  transition: background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+  text-transform: none;
+  font-family: 'Montserrat', sans-serif !important; /* Explicit font */
+}
+
+/* Also remove underline on hover/focus */
+.dropdown-menu a:hover,
+.dropdown-menu a:focus {
+  text-decoration: none;
+  background: #f5f5f5;
+  color: #000000;
+}
+
+
+/* Login/Register Link */
+.login-register-link {
+  display: block;
+  padding: 12px 20px;
+  text-align: center;
+  border-top: 1px solid #e5e5e5;
+  margin-top: 10px;
+  display: none; /* Hidden by default */
+}
+
+/* Show login/register link only on mobile */
+@media (max-width: 749px) {
+  .login-register-link {
+    display: block;
+  }
+}
+
+/* ICON BUTTONS */
+
+/* Simple site alert (used by includes/alert.php) */
+.site-alert{
+  margin:10px 0;
+  padding:10px 12px;
+  background:#f3f4f6; /* light gray */
+  color:#111827;
+  border-radius:8px;
+  border:1px solid #e6e6e6;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  justify-content:space-between;
+}
+.site-alert .site-alert-msg{ flex:1; font-size:14px; }
+.site-alert .site-alert-close{
+  background:transparent;
+  border:0;
+  font-size:18px;
+  line-height:1;
+  cursor:pointer;
+  color:#374151;
+  padding:4px 8px;
+  border-radius:6px;
+}
+.site-alert .site-alert-close:hover{ background:rgba(0,0,0,0.04); color:#111; }
+
+/* Type-specific subtle accents (kept optional) */
+.site-alert[data-alert-type="success"]{ border-left:4px solid #ffb6c1; }
+.site-alert[data-alert-type="error"]{ border-left:4px solid #7a1530; }
+.site-alert[data-alert-type="message"]{ border-left:4px solid #2d3748; }
+
+.icon-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #000;
+  margin: 0 5px;
+  padding: 6px;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.icon-btn svg {
+  width: 22px;
+  height: 22px;
+}
+.icon-btn:hover {
+  transform: scale(1.1);
+  color: #555;
+}
+
+/* Account Dropdown Styles */
+.account-dropdown-wrapper {
+  position: relative;
+}
+
+.account-profile-img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.account-dropdown-btn:hover .account-profile-img {
+  transform: scale(1.1);
+}
+
+.account-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 250px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.account-dropdown-wrapper:hover .account-dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.account-dropdown-header {
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.account-dropdown-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.account-dropdown-name {
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.account-dropdown-divider {
+  height: 1px;
+  background-color: #e5e5e5;
+  margin: 0;
+}
+
+.account-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: #333;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.account-dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
+.account-dropdown-item svg {
+  flex-shrink: 0;
+}
+
+.account-dropdown-item span {
+  font-size: 14px;
+}
+
+/* Sign-in Button */
+.sign-in-btn {
+    color: #000000;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 20px;
+    border: 2px solid #000000;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+.sign-in-btn:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
+
+/* User Email */
+.user-email {
+  font-size: 13px;
+  color: #666;
+  margin-right: 10px;
+}
+/* ============================================
+   🔥 HAMBURGER BUTTON
+   ============================================ */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 6px;
+  z-index: 1001;
+  position: relative;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.hamburger-btn:hover {
+  transform: scale(1.1);
+}
+
+.hamburger-bar {
+  width: 22px;
+  height: 2px;
+  background: #000;
+  margin: 3px 0;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+}
+
+/* Active (X icon) state */
+.hamburger-btn.active .hamburger-bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger-btn.active .hamburger-bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.active .hamburger-bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+.hamburger-btn.active .hamburger-bar {
+  background: #000;
+}
+
+/* ============================================
+   🔥 MOBILE MENU + OVERLAY
+   ============================================ */
+.mobile-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Desktop/Mobile visibility classes */
+.desktop-only {
+    display: flex;
+}
+
+.mobile-only-nav-item {
+    display: none;
+}
+
+/* Nav icon for mobile menu items */
+.nav-icon {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 16px;
+}
+
+/* Footer styles */
+.site-footer {
+  background-color: #FFB6C1;
+  color: #000000;
+  text-align: center;
+  padding: 15px 0;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 50;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+/* Hide some elements on mobile */
+@media (max-width: 768px) {
+    .desktop-only {
+        display: none !important;
+    }
+
+    .mobile-only-nav-item {
+        display: block;
+        border-top: 1px solid #f0f0f0;
+    }
+
+    .user-email {
+        display: none;
+    }
+    
+    .logo-img {
+        height: 36px;
+    }
+    
+    .banner-text {
+        padding: 0 20px;
+        font-size: 11px;
+    }
+    
+    .top-banner {
+        padding: 6px 0;
+    }
+
+    /* Mobile menu specific styles */
+    .nav-link {
+        padding: 15px 20px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-only-nav-item .nav-link {
+        color: #333;
+        font-weight: normal;
+        text-transform: none;
+        font-size: 15px;
+    }
+
+    .mobile-only-nav-item .nav-link:hover {
+        background: #f8f8f8;
+    }
+}
+
+/* ============================================
+   📱 MOBILE RESPONSIVE (≤950px)
+   ============================================ */
+@media (max-width: 950px) {
+  /* Header adjustments */
+  .header-main {
+    padding: 12px 20px;
+  }
+
+  /* Hide desktop navigation */
+  .nav-container {
+    display: none;
+  }
+  
+  /* Show hamburger */
+  .hamburger-btn { 
+    display: flex; 
+  }
+
+  /* Enable overlay */
+  .mobile-overlay { 
+    display: block; 
+  }
+
+  /* Mobile nav drawer */
+  .nav-container { 
+    display: block;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 270px;
+    height: 100%;
+    max-height: 100vh;
+    background: #fff;
+    box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+    padding: 80px 20px 100px; /* Added padding at bottom to prevent footer overlap */
+    z-index: 1001; /* Increased z-index to be above everything */
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+
+  .nav-container.open {
+    transform: translateX(0);
+  }
+
+  /* Vertical menu layout */
+  .main-nav { 
+    flex-direction: column; 
+    align-items: flex-start;
+    gap: 0; 
+  }
+
+  .main-nav li { 
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .nav-link { 
+    display: block; 
+    padding: 16px 10px; 
+    font-size: 15px;
+    text-transform: uppercase;
+  }
+
+  /* Dropdowns */
+  .dropdown-menu {
+    position: static;
+    display: none;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    background: #f9f9f9;
+    transition: max-height 0.3s ease;
+  }
+
+  .nav-item.dropdown-open .dropdown-menu {
+    display: flex;
+    max-height: 300px;
+    padding: 10px 0 10px 20px;
+  }
+
+  .dropdown-menu a {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}

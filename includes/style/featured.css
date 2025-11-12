@@ -1,0 +1,79 @@
+/* ========================================
+   FEATURED PRODUCTS
+======================================== */
+
+.featured-products {
+	padding: 120px 0;
+	background: #ffffff;
+}
+
+.featured-products h2 {
+	font-size: 48px;
+	font-weight: 200;
+	letter-spacing: 1px;
+	text-align: center;
+	margin-bottom: 80px;
+	color: #0a0a0a;
+	font-family: 'Playfair Display', serif;
+}
+
+.product-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 40px;
+}
+
+.product-card {
+	background: #ffffff;
+	transition: transform 0.4s ease;
+}
+
+.product-card:hover {
+	transform: translateY(-10px);
+}
+
+.product-card a {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+}
+
+.product-card img {
+	width: 100%;
+	height: 350px;
+	object-fit: cover;
+	display: block;
+	filter: grayscale(20%);
+	transition: filter 0.4s ease;
+}
+
+.product-card:hover img {
+	filter: grayscale(0%);
+}
+
+.product-info {
+	padding: 25px 0;
+	text-align: center;
+}
+
+.product-info h3 {
+	font-size: 16px;
+	font-weight: 400;
+	letter-spacing: 1px;
+	margin-bottom: 10px;
+	color: #0a0a0a;
+}
+
+.product-info .price {
+	font-size: 14px;
+	color: #666;
+	font-weight: 300;
+}
+
+.text-center {
+	text-align: center;
+	color: #666;
+	font-size: 16px;
+	grid-column: 1 / -1;
+}
+

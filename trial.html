@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Promotional Slider</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Arial', sans-serif; }
+
+  body {
+    background: #f7f7f7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .slider-container {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  }
+
+  .slides {
+    display: flex;
+    transition: transform 0.7s ease-in-out;
+  }
+
+  .slide {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 50px;
+    gap: 50px;
+  }
+
+  .slide img {
+    width: 50%;
+    border-radius: 12px;
+    transform: scale(1);
+    animation: imageAppear 1s forwards;
+  }
+
+  @keyframes imageAppear {
+    0% { transform: scale(1.1); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .slide-content {
+    width: 50%;
+  }
+
+  .slide-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: textAscend 0.8s forwards;
+    animation-delay: 0.3s;
+  }
+
+  .slide-content p {
+    font-size: 1.1rem;
+    margin-bottom: 25px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: textAscend 0.8s forwards;
+    animation-delay: 0.6s;
+  }
+
+  .slide-content button {
+    padding: 12px 25px;
+    font-size: 1rem;
+    background: black;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: textAscend 0.8s forwards;
+    animation-delay: 0.9s;
+  }
+
+  @keyframes textAscend {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Navigation arrows */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 2rem;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    user-select: none;
+  }
+
+  .arrow-left { left: 15px; }
+  .arrow-right { right: 15px; }
+
+  /* Progress indicators */
+  .progress-container {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+  }
+
+  .progress-bar {
+    width: 80px;
+    height: 5px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: #000;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  .progress-bar.active .progress-fill {
+    animation: fillBar 5s linear forwards;
+  }
+
+  @keyframes fillBar {
+    0% { width: 0%; }
+    100% { width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div class="slider-container">
+  <div class="arrow arrow-left">&#10094;</div>
+  <div class="arrow arrow-right">&#10095;</div>
+  
+  <div class="progress-container">
+    <div class="progress-bar" data-index="0"><div class="progress-fill"></div></div>
+    <div class="progress-bar" data-index="1"><div class="progress-fill"></div></div>
+    <div class="progress-bar" data-index="2"><div class="progress-fill"></div></div>
+  </div>
+  
+  <div class="slides">
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1522338242992-e1a54906a8da?w=600&h=400&fit=crop" alt="Hair Care">
+      <div class="slide-content">
+        <h1>Your Hair, Only Healthier</h1>
+        <p>Premium essentials to nourish, repair, and shine every strand.</p>
+        <button>View Products</button>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=600&h=400&fit=crop" alt="Glow Starts Here">
+      <div class="slide-content">
+        <h1>Glow Starts Here</h1>
+        <p>Daily rituals to hydrate, protect, and rejuvenate your skin.</p>
+        <button>Explore the Range</button>
+      </div>
+    </div>
+    <div class="slide">
+      <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&h=400&fit=crop" alt="Professional Care">
+      <div class="slide-content">
+        <h1>Professional Care at Home</h1>
+        <p>Tools designed for precision, style, and effortless beauty.</p>
+        <button>Shop Now</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const slides = document.querySelector('.slides');
+  const slideCount = document.querySelectorAll('.slide').length;
+  const progressBars = document.querySelectorAll('.progress-bar');
+  let currentIndex = 0;
+  let autoPlayTimer;
+
+  const updateSlide = () => {
+    slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // Update progress bars
+    progressBars.forEach((bar, index) => {
+      const fill = bar.querySelector('.progress-fill');
+      bar.classList.remove('active');
+      
+      if (index < currentIndex) {
+        fill.style.width = '100%';
+      } else if (index === currentIndex) {
+        bar.classList.add('active');
+      } else {
+        fill.style.width = '0%';
+      }
+    });
+    
+    // Reset and start autoplay
+    clearTimeout(autoPlayTimer);
+    autoPlayTimer = setTimeout(() => {
+      currentIndex = (currentIndex + 1) % slideCount;
+      updateSlide();
+    }, 5000);
+  }
+
+  // Click on progress bars to jump to slide
+  progressBars.forEach((bar) => {
+    bar.addEventListener('click', () => {
+      currentIndex = parseInt(bar.getAttribute('data-index'));
+      updateSlide();
+    });
+  });
+
+  document.querySelector('.arrow-left').addEventListener('click', () => {
+    currentIndex = (currentIndex === 0) ? slideCount - 1 : currentIndex - 1;
+    updateSlide();
+  });
+
+  document.querySelector('.arrow-right').addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % slideCount;
+    updateSlide();
+  });
+
+  // Initialize
+  updateSlide();
+</script>
+
+</body>
+</html>

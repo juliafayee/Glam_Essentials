@@ -1,0 +1,186 @@
+/* Modern login styles for user/login.php */
+:root{
+  --brand:#ffb6c1;
+  --accent:#2d3748;
+  --muted:#6b7280;
+  --bg:#fafafa;
+}
+
+/* Container centers the card */
+.auth-page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:calc(100vh - 120px); /* leave space for header/footer */
+  padding:24px;
+  background:linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+}
+
+.auth-card{
+  width:100%;
+  max-width:420px;
+  background:#fff;
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(16,24,40,0.08);
+  padding:28px;
+  border:1px solid rgba(0,0,0,0.03);
+}
+
+.auth-card h2{
+  font-size:20px;
+  margin:0 0 12px 0;
+  color:var(--accent);
+  letter-spacing:0.2px;
+}
+
+.form-outline{ position:relative; margin-bottom:16px; }
+.form-control{
+  width:100%;
+  padding:12px 14px;
+  border-radius:8px;
+  border:1px solid #e6e6e6;
+  background:#fff;
+  font-size:14px;
+  color:#111827;
+  outline:none;
+  transition:box-shadow .12s ease, border-color .12s ease;
+}
+.form-control:focus{ box-shadow:0 6px 18px rgba(43,55,72,0.06); border-color:var(--brand);} 
+.form-label{
+  display:block;
+  margin-top:6px;
+  font-size:13px;
+  color:var(--muted);
+}
+
+.btn-primary{
+  width:100%;
+  border-color: #000000;
+  background:var(--accent); /* changed to solid black */
+  color:#fff;
+  padding:12px 14px;
+  /* border-radius:8px; */
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform 120ms ease, box-shadow 160ms ease, background 120ms ease;
+}
+.btn-primary:hover{
+  background:#000000; /* slightly lighter/darker black on hover */
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+.text-center{ text-align:center }
+.auth-footer{ margin-top:14px; font-size:14px; color:var(--muted) }
+.auth-footer a{ color:var(--accent); font-weight:600; text-decoration:none }
+
+/* Alert styling for include/alert.php */
+.alert{
+  background:#fff3f4;
+  border-left:4px solid #ffccd6;
+  color:#7b1b2a;
+  padding:10px 12px;
+  border-radius:6px;
+  margin-bottom:14px;
+}
+
+@media (max-width:480px){
+  .auth-card{ padding:18px; border-radius:10px }
+}
+
+/* Register link — keep as text but add subtle interactive affordance */
+.auth-footer a{
+  color:var(--accent);
+  font-weight:600;
+  text-decoration:none;
+  padding:0;
+  border:0;
+  background:transparent;
+  transition: color 160ms ease, text-shadow 160ms ease;
+}
+.auth-footer a:hover,
+.auth-footer a:focus{
+  color:#000000;
+  /* text-decoration:underline; */
+  text-shadow: 0 1px 2px rgba(255,182,193,0.12);
+  outline: none;
+}
+
+/* Password Requirements Styling */
+.password-group {
+  position: relative;
+}
+
+.password-requirements {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: white;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+.password-requirements.visible {
+  display: block;
+}
+
+.password-requirements .req {
+  color: var(--muted);
+  margin-bottom: 6px;
+  transition: color 0.2s ease;
+}
+
+.password-requirements .req:last-child {
+  margin-bottom: 0;
+}
+
+.password-requirements .req.met {
+  color: #059669;
+}
+
+/* Confirm Password Indicator */
+.confirm-password-group {
+  position: relative;
+}
+
+.password-match-indicator {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #dc2626;
+  font-weight: bold;
+  display: none;
+}
+
+.password-match-indicator.visible {
+  display: block;
+}
+
+.password-match-indicator.matched {
+  color: #059669;
+  content: "✓";
+}
+
+/* Style for disabled register button */
+.btn-primary:disabled {
+  background: #e5e7eb;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.btn-primary:disabled:hover {
+  background: #e5e7eb;
+  transform: none;
+  box-shadow: none;
+}
